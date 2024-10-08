@@ -63,9 +63,10 @@ function login(){
     document.getElementById('email').value, document.getElementById('senha').value).then(response =>{
     window.location.href="pages/home/home.html";
    }).catch(error =>{
-     console.log('error',error)});
+   alert(error.code);
+   });}
 
-}
+
 
 function register(){
     window.location.href="pages/register/registro.html"
