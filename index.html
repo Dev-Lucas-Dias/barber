@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="orden.css">
+    <title>firebase</title>
+</head>
+<body>
+<div id=container>
+<h2>Email</h2>
+<input type="email" name="email"  onchange="validate()" id="email" placeholder="Coloque seu email">
+<h2>Senha</h2>
+<input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validate()">
+<button id="recuperar-senha" disabled="true">Recuperar senha</button>
+<button id="enter" type="button"  disabled="true" onclick="login()">Entrar</button>
+<button id="register" type="button" >Registrar</button>
+</div>
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
+  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
+  <script> 
+  const firebaseConfig = {
+    apiKey: "AIzaSyBj6WjOTRY4kzqCZMGCwXJJEiJxZI1vRjo",
+    authDomain: "teste-firebase021815.firebaseapp.com",
+    projectId: "teste-firebase021815",
+    storageBucket: "teste-firebase021815.appspot.com",
+    messagingSenderId: "249365723962",
+    appId: "1:249365723962:web:2ba2955170b5379ff6ae03"
+  };
+  firebase.initializeApp(firebaseConfig);
+  </script>
+  <script src="/login.js"></script>
+</body>
+</html>

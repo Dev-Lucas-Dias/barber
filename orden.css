@@ -1,0 +1,59 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#container{
+    margin: auto;
+    display:flex;
+    flex-direction: column;
+    width: 400px;
+    margin-top: 100px;
+    text-align: center;
+    
+    #email{
+        width: auto;
+        height: 30px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+    #senha{
+        margin-top: 5px;
+        width: auto;
+        height: 30px;
+    }
+    #recuperar-senha{
+        border: none;
+        font-size: larger;
+        width: 300px;
+        margin: auto;
+        margin-top: 10px;
+        
+       
+    }
+    #enter{
+       background-color: green;
+       color: antiquewhite;
+        border: none;
+        font-size: larger;
+        width: 300px;
+        margin: auto;
+        margin-top: 10px;
+        
+    }
+    #register{
+        background-color: greenyellow;
+        color: antiquewhite;
+        border: none;
+        font-size: larger;
+        width: 300px;
+        margin: auto;
+        margin-top: 10px;
+        cursor: pointer;
+     }
+}
+button[disabled]{
+opacity: 0.7;
+cursor: default;
+}
