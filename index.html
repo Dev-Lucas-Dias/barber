@@ -9,13 +9,30 @@
 <body>
 <div id=container>
 <h2>Email</h2>
-<input type="email" name="email"  onchange="validate()" id="email" placeholder="Coloque seu email">
+<input type="email" name="email"  onchange="validateEm()" id="email" placeholder="Coloque seu email">
+<div class="error" id="email-error"> Email é obrigatório!</div>
+<div class="error"id="email-invalid" > Email invalido</div>
 <h2>Senha</h2>
-<input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validate()">
+<input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validateSenha()">
+<div class="error" id="senha-invalid"> Senha é obrigatória!</div>
 <button id="recuperar-senha" disabled="true">Recuperar senha</button>
 <button id="enter" type="button"  disabled="true" onclick="login()">Entrar</button>
-<button id="register" type="button" >Registrar</button>
+<button id="register" type="button" onclick="register()">Registrar</button>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
   <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
   <script> 
@@ -27,6 +44,7 @@
     messagingSenderId: "249365723962",
     appId: "1:249365723962:web:2ba2955170b5379ff6ae03"
   };
+  
   firebase.initializeApp(firebaseConfig);
   </script>
   <script src="/login.js"></script>

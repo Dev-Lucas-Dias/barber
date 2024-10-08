@@ -11,17 +11,24 @@
     width: 400px;
     margin-top: 100px;
     text-align: center;
-    
+    .error{
+        color: antiquewhite;
+        background-color: red;
+        display: none;
+    }
     #email{
         width: auto;
         height: 30px;
         margin-top: 5px;
         margin-bottom: 5px;
+        border-radius: 5px;
     }
     #senha{
         margin-top: 5px;
+        margin-bottom: 5px;
         width: auto;
         height: 30px;
+        border-radius: 5px;
     }
     #recuperar-senha{
         border: none;
@@ -40,7 +47,7 @@
         width: 300px;
         margin: auto;
         margin-top: 10px;
-        
+        border-radius: 30px;
     }
     #register{
         background-color: greenyellow;
@@ -51,6 +58,7 @@
         margin: auto;
         margin-top: 10px;
         cursor: pointer;
+        border-radius: 30px;
      }
 }
 button[disabled]{
