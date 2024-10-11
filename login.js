@@ -69,15 +69,15 @@ function login(){
     loading();
    firebase.auth().signInWithEmailAndPassword(
     all.email().value, all.senha().value).then(response =>{
-        hideLoading()
     window.location.href="pages/home/home.html";
+    hideLoading()
    }).catch(error =>{
     hideLoading();
    alert(messageError(error));
    });}
 function messageError(error){
     if(error.code== "auth/invalid-credential"){
-        return"Usuário não encontrado";
+        return"Usuário ou senha invalidos";
     }
 return error.message;
 }

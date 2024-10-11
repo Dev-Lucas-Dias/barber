@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registrar usuário</title>
+    <link rel="stylesheet" href="/orden.css">
 </head>
 <body>
-    <h1>Registro</h1>
+    <form id="container">
+        
+        <h2>Email</h2>
+        <input type="email" id="email"  placeholder="Seu@email.com" onchange="validateEm()">
+        <div class="error" id="email-error"> Email é obrigatório!</div>
+        <div class="error"id="email-invalid" > Email invalido</div>
+
+        <h2>Senha</h2>
+        <input type="senha" id="senha"  placeholder="senha">
+        <div class="error" id="senha-invalid"> O campo deve conter minímo 6 caracters</div>
+        <div class="error" id="senha-invalid"> O campo senha é obrigatório!</div>
+        
+        <h2>Confirmar senha</h2>
+        <input type="confirmar senha" id="senha"  placeholder="Confirmar senha">
+        <div class="error" id="senha-invalid"> O campo  confirmar senha é obrigatório!</div>
+        <div class="error" id="senha-invalid"> Os campos senha e confirmar senha devem ser iguais</div>
+        <button id="register">Registrar</button>
+        <button id="enter">Entrar</button>
+    </form>
+    <script src="./resgister.js"></script>
 </body>
 </html>
