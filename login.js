@@ -6,48 +6,58 @@ function validateSenha(){
     mostraBotao();
     erroSenha();
 }
+
+const all = {
+    email: () => document.getElementById("email"),
+    senha: () => document.getElementById("senha"),
+    emailError: () => document.getElementById("email-error"),
+    emailInvalid: () => document.getElementById("email-invalid"),
+    senhaInvalid : () => document.getElementById("senha-invalid"),
+    login : () => document.getElementById("enter"),
+    senhaRecover : () => document.getElementById("recuperar-senha")
+}
 function erroEmail(){
-    const email=document.getElementById('email').value;
+    const email=all.email().value;
     if(!email){
-        document.getElementById('email-error').style.display="block";
+        all.emailError().style.display="block";
     }else{
-        document.getElementById('email-error').style.display="none";
+        all.emailError().style.display="none";
     }
     if(validateEmail(email)){
-        document.getElementById('email-invalid').style.display="none";
+        all.emailInvalid().style.display="none";
     }else{
-        document.getElementById('email-invalid').style.display="block";
+        all.emailInvalid().style.display="block";
     }
 }
 function erroSenha(){
-    const senha=document.getElementById('senha').value;
+    const senha=all.senha().value;
     if(!senha){
-        document.getElementById('senha-invalid').style.display="block";
+        all.senhaInvalid().style.display="block";
     }else{
-        document.getElementById('senha-invalid').style.display="none";
+        all.senhaInvalid().style.display="none";
     }
 }
 
 function mostraBotao(){
     const emailValido = isEmailValido();
-    document.getElementById('recuperar-senha').disabled=!emailValido;
-    document.getElementById('recuperar-senha').style.cursor="pointer";
-    document.getElementById('recuperar-senha').style.textDecoration='underline';
+    all.senhaRecover().disabled=!emailValido;
+    all.senhaRecover().style.cursor="pointer";
+    all.senhaRecover().style.textDecoration='underline';
    
     const senhaValid= validSenha();
-    document.getElementById('enter').disabled= !emailValido || !senhaValid;
-    document.getElementById('enter').style.cursor="pointer";
+    all.login().disabled= !emailValido || !senhaValid;
+    all.login().style.cursor="pointer";
 }
 
 
 function validSenha(){
-    const senha= document.getElementById('senha').value;
+    const senha= all.senha().value;
     if(!senha){return false}
     return true;
 }
 
 function isEmailValido(){
-    const email= document.getElementById('email').value;
+    const email= all.email().value;
     if(!email){return false;}
     return validateEmail(email);
 }
@@ -55,30 +65,36 @@ function validateEmail(email){
     return/\S+@\S+\.\S+/.test(email);
 }
 
-
-
-
 function login(){
+    loading();
    firebase.auth().signInWithEmailAndPassword(
-    document.getElementById('email').value, document.getElementById('senha').value).then(response =>{
+    all.email().value, all.senha().value).then(response =>{
+        hideLoading()
     window.location.href="pages/home/home.html";
    }).catch(error =>{
-   alert(error.code);
+    hideLoading();
+   alert(messageError(error));
    });}
+function messageError(error){
+    if(error.code== "auth/invalid-credential"){
+        return"Usuário não encontrado";
+    }
+return error.message;
+}
+function recover(){
+    loading();
+   firebase.auth().sendPasswordResetEmail(all.email().value).then(response=>{
+        hideLoading();
+        alert("Email enviado com sucesso");
+    }).catch(error =>{
+        hideLoading();
+        alert(messageError(error));
+    });
 
-
+}
 
 function register(){
-    window.location.href="pages/register/registro.html"
+window.location.href="pages/register/registro.html"
  }
 
-/*
-const form={
-    email: ()=> document.getElementById('email'),
-    senha: ()=> document.getElementById('senha'),
-    emailError: ()=> document.getElementById('email-error'),
-    emailInvlaid: ()=> document.getElementById('email-invalid'),
-    senhaInvalid : ()=> document.getElementById('senha-invalid'),
-    login : ()=> document.getElementById('enter'),
-    senhaInvalid : ()=> document.getElementById('recuperar-senha')
-}*/
+

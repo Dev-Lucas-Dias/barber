@@ -7,6 +7,11 @@
     <title>firebase</title>
 </head>
 <body>
+  <div id="loading">
+    <label>
+      Carregando....
+    </label>
+  </div>
 <div id=container>
 <h2>Email</h2>
 <input type="email" name="email"  onchange="validateEm()" id="email" placeholder="Coloque seu email">
@@ -15,7 +20,7 @@
 <h2>Senha</h2>
 <input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validateSenha()">
 <div class="error" id="senha-invalid"> Senha é obrigatória!</div>
-<button id="recuperar-senha" disabled="true">Recuperar senha</button>
+<button id="recuperar-senha" disabled="true" onclick="recover()">Recuperar senha</button>
 <button id="enter" type="button"  disabled="true" onclick="login()">Entrar</button>
 <button id="register" type="button" onclick="register()">Registrar</button>
 </div>
@@ -48,5 +53,6 @@
   firebase.initializeApp(firebaseConfig);
   </script>
   <script src="/login.js"></script>
+  <script src="/loading.js"></script>
 </body>
 </html>
