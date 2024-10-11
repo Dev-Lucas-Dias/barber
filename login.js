@@ -83,7 +83,7 @@ return error.message;
 }
 function recover(){
     loading();
-   firebase.auth().sendPasswordResetEmail(all.email().value).then(response=>{
+   firebase.auth().sendPasswordResetEmail(all.email().value).then(response =>{
         hideLoading();
         alert("Email enviado com sucesso");
     }).catch(error =>{
