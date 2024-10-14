@@ -47,15 +47,32 @@ function allValid(){
     if(!email|| !validateEmail(email)){
         return false;
         
-    }  all.register().style.cursor ="pointer";
+    }all.register().style.cursor="pointer";
     const senha = all.senha().value;
     if(!senha||senha.length<6){
     return false;
-    }  all.register().style.cursor ="pointer";
+    } all.register().style.cursor="pointer";
     const confirmaSenha = all.confirmSenha();
-    if(senha !=confirmSenha){
+    if(senha !=confirmaSenha){
         return false;
-    }  all.register().style.cursor ="pointer";
+    } all.register().style.cursor="pointer";
     return true;
    
+}
+function registerLogin(){
+    loading()
+    const email = all.email().value;
+    const senha =all.senha().value;
+    firebase.auth().createUserWithEmailAndPassword(
+        email, senha
+    ).then(response=>{
+        hideLoading();
+        window.location.href= "pages/home/mome.html";
+    }).catch(error=>{
+hideLoading();
+alert(messageError(error));
+    })
+}
+function messageError(error){
+    return error.code;
 }

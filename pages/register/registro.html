@@ -8,6 +8,11 @@
     <link rel="stylesheet" href="resgiter.css">
 </head>
 <body>
+    <div id="loading">
+        <label>
+          Carregando....
+        </label>
+      </div>
     <form id="container">
         
         <h2>Email</h2>
@@ -24,11 +29,15 @@
         <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha" onchange="confirmarSenha()">
         <div class="error" id="senha-obri"> O campo  confirmar senha é obrigatório!</div>
         <div class="error" id="senha-igual"> Os campos senha e confirmar senha devem ser iguais</div>
-        <button id="register" disabled="true">Registrar</button>
+        <button id="register" disabled="true" onclick="registerLogin()">Registrar</button>
         <button id="voltar">Login</button>
     </form>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
+    <script src="/firebase.js"></script>
     <script src="/validate.js"></script>
     <script src="./resgister.js"></script>
+    <script src="/loading.js"></script>
     
 </body>
 </html>
