@@ -16,17 +16,19 @@
         <div class="error"id="email-invalid" > Email invalido</div>
 
         <h2>Senha</h2>
-        <input type="senha" id="senha"  placeholder="senha" onchange="senha()">
+        <input type="senha" id="senha"  placeholder="senha" onchange="validarSenha()">
         <div class="error" id="senha-invalid"> O campo deve conter minímo 6 caracters</div>
         <div class="error" id="senha-necessaria"> O campo senha é obrigatório!</div>
         
         <h2>Confirmar senha</h2>
-        <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha">
+        <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha" onchange="confirmarSenha()">
         <div class="error" id="senha-obri"> O campo  confirmar senha é obrigatório!</div>
         <div class="error" id="senha-igual"> Os campos senha e confirmar senha devem ser iguais</div>
         <button id="register" disabled="true">Registrar</button>
         <button id="voltar">Login</button>
     </form>
+    <script src="/validate.js"></script>
     <script src="./resgister.js"></script>
+    
 </body>
 </html>
