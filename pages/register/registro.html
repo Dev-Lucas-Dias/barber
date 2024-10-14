@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registrar usuário</title>
-    <link rel="stylesheet" href="/orden.css">
+    <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="resgiter.css">
 </head>
 <body>
     <form id="container">
@@ -15,16 +16,16 @@
         <div class="error"id="email-invalid" > Email invalido</div>
 
         <h2>Senha</h2>
-        <input type="senha" id="senha"  placeholder="senha">
+        <input type="senha" id="senha"  placeholder="senha" onchange="senha()">
         <div class="error" id="senha-invalid"> O campo deve conter minímo 6 caracters</div>
-        <div class="error" id="senha-invalid"> O campo senha é obrigatório!</div>
+        <div class="error" id="senha-necessaria"> O campo senha é obrigatório!</div>
         
         <h2>Confirmar senha</h2>
-        <input type="confirmar senha" id="senha"  placeholder="Confirmar senha">
-        <div class="error" id="senha-invalid"> O campo  confirmar senha é obrigatório!</div>
-        <div class="error" id="senha-invalid"> Os campos senha e confirmar senha devem ser iguais</div>
-        <button id="register">Registrar</button>
-        <button id="enter">Entrar</button>
+        <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha">
+        <div class="error" id="senha-obri"> O campo  confirmar senha é obrigatório!</div>
+        <div class="error" id="senha-igual"> Os campos senha e confirmar senha devem ser iguais</div>
+        <button id="register" disabled="true">Registrar</button>
+        <button id="voltar">Login</button>
     </form>
     <script src="./resgister.js"></script>
 </body>

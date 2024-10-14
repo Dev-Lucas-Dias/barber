@@ -51,28 +51,9 @@ display: none;
         margin: auto;
         margin-top: 10px;   
     }
-    #enter{
-       background-color: green;
-       color: antiquewhite;
-        border: none;
-        font-size: larger;
-        width: 300px;
-        margin: auto;
-        margin-top: 10px;
-        border-radius: 30px;
-    }
-    #register{
-        background-color: greenyellow;
-        color: antiquewhite;
-        border: none;
-        font-size: larger;
-        width: 300px;
-        margin: auto;
-        margin-top: 10px;
-        cursor: pointer;
-        border-radius: 30px;
+ 
      }
-}
+
 button[disabled]{
 opacity: 0.7;
 cursor: default;

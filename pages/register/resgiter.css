@@ -1,0 +1,25 @@
+#confirmar-senha{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: auto;
+    height: 30px;
+    border-radius: 5px;}
+    #register{
+        background-color:green;
+        color: antiquewhite;
+        border: none;
+        font-size: larger;
+        width: 300px;
+        margin: auto;
+        margin-top: 10px;
+        border-radius: 30px;}
+  #voltar{
+            background-color: greenyellow;
+            color: antiquewhite;
+             border: none;
+             font-size: larger;
+             width: 300px;
+             margin: auto;
+             margin-top: 10px;
+             border-radius: 30px;
+         }
