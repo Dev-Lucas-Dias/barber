@@ -13,7 +13,7 @@
           Carregando....
         </label>
       </div>
-    <form id="container">
+    <div id="container">
         
         <h2>Email</h2>
         <input type="email" id="email"  placeholder="Seu@email.com" onchange="validateEm()">
@@ -21,23 +21,23 @@
         <div class="error"id="email-invalid" > Email invalido</div>
 
         <h2>Senha</h2>
-        <input type="senha" id="senha"  placeholder="senha" onchange="validarSenha()">
+        <input type="password" id="senha"  placeholder="senha" onchange="validarSenha()" autocomplete="off">
         <div class="error" id="senha-invalid"> O campo deve conter minímo 6 caracters</div>
         <div class="error" id="senha-necessaria"> O campo senha é obrigatório!</div>
         
         <h2>Confirmar senha</h2>
-        <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha" onchange="confirmarSenha()">
+        <input type="confirmar senha" id="confirmar-senha"  placeholder="Confirmar senha" onchange="confirmarSenha()" autocomplete="off">
         <div class="error" id="senha-obri"> O campo  confirmar senha é obrigatório!</div>
         <div class="error" id="senha-igual"> Os campos senha e confirmar senha devem ser iguais</div>
         <button id="register" disabled="true" onclick="registerLogin()">Registrar</button>
-        <button id="voltar">Login</button>
-    </form>
+        <button id="voltar" onclick="voltar()">voltar</button>
+    </div>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
     <script src="/firebase.js"></script>
     <script src="/validate.js"></script>
     <script src="./resgister.js"></script>
     <script src="/loading.js"></script>
-    
+  
 </body>
 </html>

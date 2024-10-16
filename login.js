@@ -1,3 +1,8 @@
+//mantém se ja estiver logado
+firebase.auth().onAuthStateChanged(function(user){
+    if (user){ window.location.href= "/home/home.html";}
+})
+
 function validateEm(){
     mostraBotao();
     erroEmail();
@@ -54,9 +59,10 @@ function mostraBotao(){
 
 function login(){
     loading();
+    //realiza o login com firebase
    firebase.auth().signInWithEmailAndPassword(
     all.email().value, all.senha().value).then(response =>{
-    window.location.href="pages/home/home.html";
+    window.location.href="/home/home.html";
     hideLoading()
    }).catch(error =>{
     hideLoading();
@@ -70,6 +76,7 @@ return error.message;
 }
 function recover(){
     loading();
+   // envia a senha para verificação no firebase
    firebase.auth().sendPasswordResetEmail(all.email().value).then(response =>{
         hideLoading();
         alert("Email enviado com sucesso");

@@ -2,6 +2,7 @@
     mostraBotao();
     erroEmail();
 }*/
+
 const all = {
     email: () => document.getElementById("email"),
     senha: () => document.getElementById("senha"),
@@ -42,6 +43,7 @@ function confirmarSenha(){
  function register(){
     all.register().disabled=allValid();
  }
+
 function allValid(){
     const email = all.email().value;
     if(!email|| !validateEmail(email)){
@@ -61,18 +63,24 @@ function allValid(){
 }
 function registerLogin(){
     loading()
-    const email = all.email().value;
-    const senha =all.senha().value;
-    firebase.auth().createUserWithEmailAndPassword(
-        email, senha
-    ).then(response=>{
+    const emailLogin = all.email().value;
+    const senhaLogin =all.senha().value;
+    //cria um novo login no firebase auth
+    firebase.auth().createUserWithEmailAndPassword(emailLogin, senhaLogin).then(()=>{
         hideLoading();
-        window.location.href= "pages/home/mome.html";
-    }).catch(error=>{
-hideLoading();
-alert(messageError(error));
-    })
-}
+        window.location.href="/home/home.html";
+    }).catch(error =>{
+        alert(messageError(error));
+   });}
 function messageError(error){
-    return error.code;
-}
+    if(error.code== "auth/email-already-in-use"){
+        return"Email já existente!";
+    }}
+ function voltar(){
+    loading()
+    window.location.href="/index.html";
+    hideLoading();
+ }
+ firebase.auth().onAuthStateChanged(function(user){
+    if (user){ window.location.href= "/home/home.html";}
+})
