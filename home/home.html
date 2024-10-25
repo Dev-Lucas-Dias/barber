@@ -9,11 +9,65 @@
 </head>
 <body>    
 <header id="box">
-<div id ="corpo">
-    <h1>BEM VINDO</h1>
-    <button type="button" id="logout" onclick="sair()">Sair</button>
-</div>
-</header>
+
+        <h1>Barbearia X</h1>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#sobre">Sobre Nós</a></li>
+                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <button type="button" id="logout" onclick="sair()">Sair</button>
+    </header>
+
+    <!-- Seção de Início -->
+    <section id="inicio">
+        <h2>Bem-vindo à Barbearia X</h2>
+        <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
+        <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
+    </section>
+
+
+    <!-- Seção Sobre Nós -->
+    <section id="sobre">
+       <div id="imagens">
+       <div> <img id="img1" src="assets/Rectangle 10.png" alt="">
+        <img id="img2" src="assets/Rectangle 8.png" alt=""></div>
+        <img id="img3" src="assets/Rectangle 9.png" alt="">
+       </div>
+        <div> <h2>Sobre Nós</h2>
+        <p>Conheça nossa história e nossos profissionais.</p></div>
+    </section>
+
+    <!-- Seção de Serviços -->
+    <section id="servicos">
+        <h2>Serviços</h2>
+        <p id="desc">Lorem ipsum dolor sit amet consectetur. Etiam mus vitae lectus proin pellentesque mattis iaculis. In viverra accumsan sagittis tempus duis a. Sagittis mollis a eu urna eget id. </p>
+        <ul id="list">
+            <li><img src="assets/Group 2.png" alt=""></li>
+            <li><img src="assets/Group 3.png" alt=""></li>
+            <li><img src="assets/Group 2.png" alt=""></li>
+            <li><img src="assets/Group 3.png" alt=""></li>
+        </ul>
+    </section>
+    
+
+    <!-- Seção de Contato -->
+    <section id="contato">
+        <h2>Contato</h2>
+        <p>Endereço: Rua Exemplo, 123 - Centro</p>
+        <p>Telefone: (11) 1234-5678</p>
+        <p>Email: contato@barbeariax.com</p>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>&copy; 2023 Barbearia X - Todos os direitos reservados</p>
+    </footer>
+
 </body>
 <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
