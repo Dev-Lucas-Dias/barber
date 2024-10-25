@@ -1,4 +1,6 @@
+
 :root{
+    font-size: 62.5%;
     --text-color: white;
     --text-color-botton: black;
     --bg-url: url("assets/Rectangle 6.png");
@@ -7,30 +9,38 @@
     --surface-color-hover: #F0B35B;
 
     }
-
+body{
+    width: auto;
+}
     #box {
+        h1{
+            font-size: 3.0rem;
+        }
         width: 100vw;
         display: flex;
         flex-direction: row;
         background-color: var(--surface-color);
         color:var(--text-color);
-        padding: 20px;
+        padding: 2.0rem;
         text-align: center;
         align-items: center;
         align-content:space-between
 
     }
     #logout {
-        padding: 10px 20px;
+        padding: 1.0rem 2.0rem;
         color:var(--text-color-botton);
         background-color: var(--surface-color-hover);
-        width: 80px;
+        width: 8.0prem;
         height: auto;
         border: none;
-        border-radius: 15px;
+        border-radius: 1.5rem;
         cursor: pointer;
-        margin-right: 10px;
-        margin-left: 600px;
+        margin-right: 1.0rem;
+        margin-left: 60.0rem;
+    }
+    h2{
+        font-size: 2.5rem;
     }
     header nav ul {
         list-style: none;
@@ -46,30 +56,38 @@
     header nav ul li a {
         color: #fff;
         text-decoration: none;
+        font-size: 1.5rem;
         
     }
     section {
-        padding: 40px 20px;
+        padding: 4.0rem 2.0rem;
         text-align: center;
     
     }
     #inicio {
-        background-image: var(--bg-url);
+        background: var(--bg-url);
+        background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
         color:var(--text-color);
-        height: 820px;
-        padding-top: 270px;
+        height: 82.0rem;
+        padding-top: 27.0rem;
     }
     #inicio h2{
-        margin-bottom: 14px;
+        margin-bottom: 1.4rem;
+        font-size: 2.5rem;
     }
     #inicio p{
-        margin-bottom: 24px;
+        margin-bottom: 2.4rem;
+        font-size: 1.5rem;
     }
     #sobre{
         display: grid;
         grid-auto-flow: column;
         background-color: var(--stroke-color);
         color: var(--text-color);
+        border-style:hidden;
+        font-size: 1.5rem;
         #imagens{
             div{
                 display: grid;
@@ -80,29 +98,34 @@
             display: grid;
             grid-auto-flow: column;
             gap: 5px;
-        #img1{width: 250px;
+        #img1{width: 25.0rem;
             height: auto;
-        } #img2{width: 250px;
+            border-radius: 5px;
+        } #img2{width: 25.0rem;
             height: auto;
+            border-radius: 5px;
         }
         #img3{
             width: auto;
-            height:440.54px;
+            height:44.054rem;
+            border-radius: 5px;
         }}
     } 
     #servicos{
         background-color: white;
         color: var(--surface-color);
-        height: 784px;
+        height: 78.4rem;
+       
     }
     #servicos h2{
         color: var(--stroke-color);
-        padding-top:104px;
-        padding-bottom: 14px;
+        padding-top:10.4rem;
+        padding-bottom: 1.4rem;
         align-items: center;
     }
         #desc{
             padding-bottom: 48px;
+            font-size: 1.5rem;
         }
         #list{
         list-style: none;
@@ -110,24 +133,26 @@
         grid-auto-flow:column;
     }
     #list li img{
-        width: 150px;
+        width: 20.0rem;
         height: auto;
     }
     #contato {
         background-color: var(--stroke-color);
         color: var(--text-color);
+        font-size: 1.5rem;
        
     }
     
     /* Botão */
     #hr {
-        padding: 10px 20px;
+        padding: 1.0rem 2.0rem;
         color:var(--text-color-botton);
         background-color: var(--surface-color-hover);
-        width: 150px;
+        width: 15.0rem;
         border: none;
-        border-radius: 15px;
+        border-radius: 1.5rem;
         cursor: pointer;
+        font-size: 1.5rem;
     }
     
     button:hover {
@@ -139,6 +164,5 @@
         background-color: #333;
         color: #fff;
         text-align: center;
-        padding: 20px;
-        margin-top: 20px;
+        padding: 2.0rem;
     }

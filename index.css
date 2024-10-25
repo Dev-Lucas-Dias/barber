@@ -1,14 +1,17 @@
 
-    #recuperar-senha{
+
+   #recuperar-senha{
         border: none;
+        background: none;
         font-size: larger;
         width: 300px;
         margin: auto;
         margin-top: 10px;   
+        color: var(--text-color);
     }
     #enter{
-       background-color: green;
-       color: antiquewhite;
+       background-color:var(--surface-color-hover);
+       color:var(--text-color-botton);
         border: none;
         font-size: larger;
         width: 300px;
@@ -17,8 +20,8 @@
         border-radius: 30px;
     }
     #register{
-        background-color: greenyellow;
-        color: antiquewhite;
+        background-color: var(--surface-color-hover);
+        color: var(--text-color-botton);
         border: none;
         font-size: larger;
         width: 300px;

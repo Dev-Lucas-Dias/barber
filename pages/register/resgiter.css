@@ -1,12 +1,20 @@
-#confirmar-senha{
+:root{
+   
+    --text-color: white;
+    --text-color-botton: black;
+    --bg-url: url("/home/assets/Rectangle\ 6.png");
+    --stroke-color: #0D121E;
+    --surface-color:#080B16;
+    --surface-color-hover: #F0B35B;}
+    #confirmar-senha{
     margin-top: 5px;
     margin-bottom: 5px;
     width: auto;
     height: 30px;
     border-radius: 5px;}
     #register{
-        background-color:green;
-        color: antiquewhite;
+        background-color:var(--surface-color-hover);
+        color: var(--text-color-botton);
         border: none;
         font-size: larger;
         width: 300px;
@@ -14,8 +22,8 @@
         margin-top: 10px;
         border-radius: 30px;}
   #voltar{
-            background-color: greenyellow;
-            color: antiquewhite;
+    background-color:var(--surface-color-hover);
+    color: var(--text-color-botton);
              border: none;
              font-size: larger;
              width: 300px;

@@ -4,6 +4,23 @@
     padding: 0;
     font-family: Arial, Helvetica, sans-serif;
 }
+:root{
+   
+    --text-color: white;
+    --text-color-botton: black;
+    --bg-url: url("/home/assets/Rectangle\ 6.png");
+    --stroke-color: #0D121E;
+    --surface-color:#080B16;
+    --surface-color-hover: #F0B35B;}
+
+body{
+    background: var(--bg-url);
+    background-repeat: no-repeat;
+        background-position: top center;
+        background-size: cover;
+    opacity: 80%;
+    height: 100vh;
+}
 #loading{
     background-color: rgb(0, 0, 0, 0.5);
     position: fixed;
@@ -24,9 +41,11 @@ display: none;
     width: 400px;
     padding-top: 100px;
     text-align: center;
+    color: var(--text-color);
     .error{
         color: antiquewhite;
         background-color: red;
+        border-radius: 10px;
         display: none;
         font-family: Arial, Helvetica, sans-serif;
     }
@@ -36,6 +55,7 @@ display: none;
         margin-top: 5px;
         margin-bottom: 5px;
         border-radius: 5px;
+        
     }
     #senha{
         margin-top: 5px;
