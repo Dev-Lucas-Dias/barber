@@ -23,7 +23,7 @@ document.getElementById("agenda").addEventListener("submit", function(event) {
     const data = Object.fromEntries(formData.entries());
   
     // Envia os dados usando Fetch API
-    fetch("https://wa.me/5535997309813", {
+    fetch("https://wa.me/+5535997309813?text=ola", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
