@@ -29,26 +29,21 @@
         <div id="container2"> 
        <h3>Agendar horário</h3>
             <button id="btx" onclick="fechar()"><img src="assets/🦆 icon _close_.png" alt=""></button>
+           <form id="agenda" action="https://wa.me/5535997309813" method="post"> 
             <div class="form">
                 <label>Nome completo </label>
-                <input type="text" id="nome" placeholder="Digite seu nome" >
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
             </div>
             <div class="form">
                 <label>Selecione a data </label>
              <input type="text" id="data" placeholder="dd/mm/aa" ></input><button id="calendario"></button>
             </div>
-            <label>Selecione um horário</label>
-            <div id="botões">
-                <button>09:00</button>
-                <button>10:00</button>
-                <button>11:00</button>
-                <button>12:00</button> </div>
-                <button id="confirmar"> confirmar</button>
-        </div>
+            <div class="form"><label>Selecione um horário</label>
+                <input id= "confimar" type="submit" value="Enviar"></div>
+        </div></form>
         <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
         <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
     </section>
-
 
     <!-- Seção Sobre Nós -->
     <section id="sobre">
