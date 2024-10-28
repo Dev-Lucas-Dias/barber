@@ -7,6 +7,8 @@
     --stroke-color: #0D121E;
     --surface-color:#080B16;
     --surface-color-hover: #F0B35B;
+    --bg-button: #747272;
+    --bg-imgbt:url("assets/🦆 icon _close_.png");
 
     }
 body{
@@ -73,7 +75,7 @@ body{
         height: 82.0rem;
         padding-top: 27.0rem;
     }
-    #inicio h2{
+    #inicio h2{ 
         margin-bottom: 1.4rem;
         font-size: 2.5rem;
     }
@@ -81,6 +83,100 @@ body{
         margin-bottom: 2.4rem;
         font-size: 1.5rem;
     }
+    #container2{
+position:absolute;
+top: 15.0rem;
+left: 35.0rem;
+width: 62.0rem;
+        height: auto;
+      
+        background-color: var(--surface-color);
+        border-radius: 16px;
+        z-index: -1;
+       input{
+        width: 45.0rem;
+        height: 4.4rem;
+        border-radius: 8px;
+       }
+    }
+    #container2 #calendario{
+        width: 2.0rem;
+        height: 2.0rem;
+        background: url(assets/Vector.png);
+        border: none;
+        position: absolute;
+        top: 21.58rem;
+        left: 50.0rem;
+    }
+    #container2 #calendario:hover{
+        cursor: pointer;
+    }
+ 
+ #container2 h3{
+    margin-top: 3.6rem;
+    margin-bottom: 2.4rem;
+    color: var(--text-color);
+    font-size: 2.0rem;
+ }
+ #container2 label{
+    color: var(--text-color);
+    font-size: 1.5rem;
+ }
+
+ #container2 #btx{
+    position: absolute;
+    top: 3.0rem;
+    left: 55.0rem;
+  background: var(--bg-imgbt);
+    width: 2.9rem;
+    height: 2.9rem;
+    border: none;
+ }
+ #container2 #btx:hover{
+    cursor: pointer;
+ }
+ .form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem 0 2.9rem 0 ;
+ }
+ #botões{
+    width: 45.0rem;
+    height: auto;
+    display: flex;
+    margin: auto;
+    gap: 5px;
+    button{
+        border: none;
+        background-color: var(--bg-button);
+  opacity: 55%;
+  color: var(--text-color);
+        width: 11.2rem;
+        height: 3.7rem;
+        border-radius: 8px;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: var(--surface-color-hover);
+        color: var(--text-color-botton);
+    }
+ 
+ }
+ #confirmar{
+    margin-top: 4.4rem;
+    margin-bottom: 4.6rem;
+    width: 45.0rem;
+    height: 4.4rem;
+    background-color: var(--surface-color-hover);
+    color: var(--text-color-botton);
+    font-size: 1.5rem;
+    border: none;
+    border-radius: 8px;
+ }
+ #confimar:hover{
+    cursor: pointer;
+ }
     #sobre{
         display: grid;
         grid-auto-flow: column;

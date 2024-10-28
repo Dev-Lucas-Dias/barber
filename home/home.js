@@ -5,3 +5,11 @@ function sair(){
         alert('ERRO AO FAZER LOGOUT!')
     })
 }
+function marcarHorario(){
+    let horario=document.getElementById("container2");
+    horario.style.zIndex=1;
+}
+function fechar(){
+    let close=document.getElementById("container2");
+    close.style.zIndex=-1;
+}
