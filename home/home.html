@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="/global.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Home-Barber</title>
 </head>
 <body>    
@@ -29,18 +30,47 @@
         <div id="container2"> 
        <h3>Agendar horário</h3>
             <button id="btx" onclick="fechar()"><img src="assets/🦆 icon _close_.png" alt=""></button>
-           <form id="agenda" action="https://wa.me/+5535997309813?text=ola" method="post"> 
+          
             <div class="form">
                 <label>Nome completo </label>
                 <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
             </div>
-            <div class="form">
-                <label>Selecione a data </label>
-             <input type="text" id="data" placeholder="dd/mm/aa" ></input><button id="calendario"></button>
-            </div>
-            <div class="form"><label>Selecione um horário</label>
-                <input id= "confimar" type="submit" value="Enviar"></div>
-        </div></form>
+            <div class="form-container form">
+                <label for="data">Data</label>
+                <input type="text" id="data" readonly onclick="abrirCalendario()" placeholder="Selecione a data">
+                <div  class="calendario" id="calendario">
+                    <div class="calendario-header">
+                      <button onclick="alterarMes(-1)">&#10094;</button>
+                      <span id="mesAno"></span>
+                      <button onclick="alterarMes(1)">&#10095;</button>
+                    </div>
+                    <div class="calendario-semana">
+                      <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                    </div>
+                    <div class="calendario-dias" id="dias"></div>
+                  </div>
+                </div>
+                <Span>
+                    <label for="servicos">Selecione um serviço:</label>
+                    <select id="servicos" onchange="mostrarValorServico()">
+                      <option value="" selected disabled>Escolha um serviço</option>
+                      <option value="25">Corte Básico - R$ 25,00</option>
+                      <option value="50">Corte Completo - R$ 50,00</option>
+                      <option value="40">Corte Navalhado - R$ 40,00</option>
+                      <option value="20">Freestyle - R$ 20,00</option>
+                      <option value="15">Barba - R$ 15,00</option>
+                      <option value="15">Sobrancelha - R$ 10,00</option>
+                      <option value="10">Pezinho - R$ 10,00</option>
+                    </select></Span>
+                  
+                    <p id="valorServico">Valor: R$ 0,00</p>
+                    
+                <label for="horario">Selecione um horário:</label>
+                <select id="horario"></select><br>
+              
+            
+
+        </div>
         <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
         <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
     </section>
@@ -88,4 +118,5 @@
     <script src="../firebase.js"></script>
 <script src="/home/home.js"></script>
 <script src="/authguard.js"></script>
+<script src="script.js"></script>
 </html>

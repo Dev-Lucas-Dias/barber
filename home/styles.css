@@ -1,0 +1,107 @@
+/* styles.css */
+
+/*body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+  }*/
+  :root{
+    font-size: 62.5%;
+    --text-color: white;
+    --text-color-botton: black;
+    --bg-url: url("assets/Rectangle 6.png");
+    --stroke-color: #0D121E;
+    --surface-color:#080B16;
+    --surface-color-hover: #F0B35B;
+    --bg-button: #747272;
+    --bg-imgbt:url("assets/🦆 icon _close_.png");}
+
+
+  .form-container {
+    position: relative;
+  }
+  
+  input[type="text"] {
+    padding: 0.8rem;
+    font-size: 1.6rem;
+    width: 20.0rem;
+    cursor: pointer;
+  }
+ 
+  .calendario {
+    font-family: Arial, sans-serif;
+    font-size: 1.6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    margin-top: 1.0rem;
+    background-color:var(--text-color);
+    color: var(--stroke-color);
+    border: 1px solid var(--surface-color);
+    border-radius: 8px;
+    width: auto;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .calendario-header {
+    display: flex;
+    font-weight: bold;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    background:var(--surface-color-hover);
+    color:var(--text-color-botton);
+  }
+  
+  .calendario-semana, .calendario-dias {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .calendario-semana span {
+    font-weight: bold;
+  }
+  
+  .calendario-dias span {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .calendario-dias span:hover {
+    background-color:var(--surface-color);
+    color:var(--text-color);
+    border-radius: 50%;
+  }
+  
+  .calendario-dias .hoje {
+    background-color:var(--stroke-color);
+    color: #fff;
+    border-radius: 50%;
+  }
+ 
+  #servicos{
+    height: auto;
+    font-size: 1.6rem;
+    background-color: var(--text-color);
+    border-radius: 8px;
+    font-weight: bold;
+    margin-top: 3.0rem;
+    margin-bottom: 2.0rem;
+    text-align: justify;
+   margin-left: 0.5rem;
+  }
+  #horario{
+    background-color: var(--text-color);
+    width: 20.rem;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }

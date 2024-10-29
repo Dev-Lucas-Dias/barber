@@ -88,7 +88,7 @@ position:absolute;
 top: 15.0rem;
 left: 35.0rem;
 width: 62.0rem;
-        height: auto;
+        height: 62.0rem;
       
         background-color: var(--surface-color);
         border-radius: 16px;
@@ -98,18 +98,6 @@ width: 62.0rem;
         height: 4.4rem;
         border-radius: 8px;
        }
-    }
-    #container2 #calendario{
-        width: 2.0rem;
-        height: 2.0rem;
-        background: url(assets/Vector.png);
-        border: none;
-        position: absolute;
-        top: 21.58rem;
-        left: 50.0rem;
-    }
-    #container2 #calendario:hover{
-        cursor: pointer;
     }
  
  #container2 h3{
@@ -174,7 +162,6 @@ background: var(--surface-color-hover);
     border: none;
     border-radius: 8px;
  }
-
     #sobre{
         display: grid;
         grid-auto-flow: column;
