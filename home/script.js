@@ -130,6 +130,29 @@ document.addEventListener("DOMContentLoaded", popularSelectHorarios);
     }
 
 
-      // Exibe o valor total formatado
-      const valorTotalElemento = document.getElementById("valorTotal");
-      valorTotalElemento.innerText = `Valor Total: R$ ${valorTotal.toFixed(2)}`;
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.firestore();
+
+    // Função para enviar dados ao Firestore
+    document.getElementById('dataForm').addEventListener('submit', async (e) => {
+        e.preventDefault(); // Impede o envio do formulário
+
+        const nome = document.getElementById('nome').value;
+        const servico = document.getElementById('servico').value;
+
+        try {
+            // Salva os dados na coleção "servicos"
+            await db.collection('servicos').add({
+                nome: nome,
+                servico: servico,
+                dataCriacao: firebase.firestore.FieldValue.serverTimestamp() // Adiciona timestamp
+            });
+            document.getElementById('resultado').innerText = 'Dados salvos com sucesso!';
+        } catch (error) {
+            console.error("Erro ao salvar dados: ", error);
+            document.getElementById('resultado').innerText = 'Erro ao salvar dados.';
+        }
+
+        // Limpa o formulário
+        document.getElementById('dataForm').reset();
+    });

@@ -30,7 +30,7 @@
         <div id="container2"> 
        <h3>Agendar horário</h3>
             <button id="btx" onclick="fechar()"><img src="assets/🦆 icon _close_.png" alt=""></button>
-          
+            <form id="dataForm">
             <div class="form">
                 <label>Nome completo </label>
                 <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
@@ -64,11 +64,11 @@
                     </select></Span>
                   
                     <p id="valorServico">Valor: R$ 0,00</p>
-                    
+
                 <label for="horario">Selecione um horário:</label>
                 <select id="horario"></select><br>
-              
-            
+                <button type="submit">Salvar</button>
+            </form>
 
         </div>
         <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
@@ -115,6 +115,7 @@
 </body>
 <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js";></script>
     <script src="../firebase.js"></script>
 <script src="/home/home.js"></script>
 <script src="/authguard.js"></script>
