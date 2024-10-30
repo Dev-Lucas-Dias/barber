@@ -74,7 +74,7 @@ function gerarHorarios(inicio, fim, intervalo) {
 // Popula o select com os horários
 document.addEventListener("DOMContentLoaded", () => {
   const selectHorario = document.getElementById("horario");
-  gerarHorarios(9, 19, 60).forEach(horario => {
+  gerarHorarios(9, 19, 30).forEach(horario => {
     const option = document.createElement("option");
     option.value = horario;
     option.text = horario;
