@@ -32,9 +32,8 @@
     cursor: pointer;
   }
  #contato{
-  padding: 0.8rem;
   font-size: 1.6rem;
-  width: 20.0rem;
+  width: 15.0rem;
   cursor:text;
   background: var(--text-color);
 }

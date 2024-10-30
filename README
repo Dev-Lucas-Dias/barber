@@ -19,8 +19,8 @@ Liste as tecnologias que você usou para construir o site, como:
 HTML
 CSS
 JavaScript
-Frameworks ou bibliotecas (ex: React, Angular, Vue)
 Firebase (se aplicável)
+
 Instalação
 Forneça instruções sobre como instalar e executar seu site localmente. Inclua qualquer pré-requisito necessário.
 
@@ -37,6 +37,7 @@ npm install
 
 # Inicie o servidor local
 npm start
+
 Uso
 Explique como usar o seu site. Se houver recursos especiais, explique como acessá-los. Você pode incluir imagens ou capturas de tela se necessário.
 
@@ -48,6 +49,7 @@ Crie uma nova branch (git checkout -b feature/nome-da-feature)
 Faça suas alterações e faça commit (git commit -m 'Adicionei uma nova feature')
 Envie sua branch (git push origin feature/nome-da-feature)
 Abra um Pull Request
+
 Licença
 Indique a licença sob a qual o projeto está licenciado. Por exemplo:
 
@@ -56,6 +58,6 @@ Este projeto está licenciado sob a Licença MIT - consulte o arquivo LICENSE pa
 Contato
 Forneça informações sobre como os usuários podem entrar em contato com você, como:
 
-Nome: Seu Nome
-Email: seuemail@example.com
+Nome: Lucas Dias
+Email: diaslucasaparecido@gmail.com
 LinkedIn: seu-linkedin

@@ -6,125 +6,134 @@
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="/global.css">
     <link rel="stylesheet" href="styles.css">
-    <title>Home-Barber</title>
+    <title>Home - Barbearia X</title>
 </head>
-<body>    
-<header id="box">
-
+<body>
+    <header id="box">
         <h1>Barbearia X</h1>
         <nav>
             <ul>
                 <li><a href="#inicio">Início</a></li>
-                <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#sobre">Sobre Nós</a></li>
-                <li><a href="#galeria">Galeria</a></li>
+                <li><a href="#servicos">Serviços</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
         <button type="button" id="logout" onclick="sair()">Sair</button>
     </header>
 
-    <!-- Seção de Início -->
-    <section id="inicio">
-        <h2>Bem-vindo à Barbearia X</h2>
-        <div id="container2"> 
-       <h3>Agendar horário</h3>
-            <button id="btx" onclick="fechar()"><img src="assets/🦆 icon _close_.png" alt=""></button>
-            <form id="agendamentoForm">
-            <div class="form">
-                <label>Nome completo </label>
-                <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
-            </div>
-            <div class="form-container form">
-                <label for="data">Data</label>
-                <input type="text" id="data" readonly onclick="abrirCalendario()" placeholder="Selecione a data">
-                <div  class="calendario" id="calendario">
-                    <div class="calendario-header">
-                      <button onclick="alterarMes(-1)">&#10094;</button>
-                      <span id="mesAno"></span>
-                      <button onclick="alterarMes(1)">&#10095;</button>
+    <main>
+        <!-- Seção de Início -->
+        <section id="inicio">
+            <h2>Bem-vindo à Barbearia X</h2>
+            <div id="container2">
+                <h3>Agendar Horário</h3>
+                <button id="btx" onclick="fechar()">
+                    <img src="assets/🦆 icon _close_.png" alt="Fechar" />
+                </button>
+                <form id="agendamentoForm" aria-label="Formulário de Agendamento">
+                    <div class="form">
+                        <label for="nome">Nome completo</label>
+                        <input type="text" name="nome" id="nome" placeholder="Digite seu nome" required>
                     </div>
-                    <div class="calendario-semana">
-                      <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                    <div class="form-container form">
+                        <label for="data">Data</label>
+                        <input type="text" id="data" readonly onclick="abrirCalendario()" placeholder="Selecione a data">
+                        <div class="calendario" id="calendario">
+                            <div class="calendario-header">
+                                <button type="button" onclick="alterarMes(-1)">&#10094;</button>
+                                <span id="mesAno"></span>
+                                <button type="button" onclick="alterarMes(1)">&#10095;</button>
+                            </div>
+                            <div class="calendario-semana">
+                                <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+                            </div>
+                            <div class="calendario-dias" id="dias"></div>
+                        </div>
                     </div>
-                    <div class="calendario-dias" id="dias"></div>
-                  </div>
-                </div>
-                <Span>
-                    <label for="servicos">Selecione um serviço:</label>
-                    <select id="servicos" onchange="mostrarValorServico()">
-                      <option value="" selected disabled>Escolha um serviço</option>
-                      <option value="Corte Básico">Corte Básico - R$ 25,00</option>
-                      <option value="Corte Completo">Corte Completo - R$ 50,00</option>
-                      <option value="Corte Navalhado">Corte Navalhado - R$ 40,00</option>
-                      <option value="Freestyle">Freestyle - R$ 20,00</option>
-                      <option value="Barba">Barba - R$ 15,00</option>
-                      <option value="Sobrancelha">Sobrancelha - R$ 10,00</option>
-                      <option value="Pezinho">Pezinho - R$ 10,00</option>
-                    </select></Span>
-                  
+                    <div class="form">
+                        <label for="servicos">Selecione um serviço:</label>
+                        <select id="servicos" onchange="mostrarValorServico()" required>
+                            <option value="" selected disabled>Escolha um serviço</option>
+                            <option value="Corte Básico">Corte Básico - R$ 25,00</option>
+                            <option value="Corte Completo">Corte Completo - R$ 50,00</option>
+                            <option value="Corte Navalhado">Corte Navalhado - R$ 40,00</option>
+                            <option value="Freestyle">Freestyle - R$ 20,00</option>
+                            <option value="Barba">Barba - R$ 15,00</option>
+                            <option value="Sobrancelha">Sobrancelha - R$ 10,00</option>
+                            <option value="Pezinho">Pezinho - R$ 10,00</option>
+                        </select>
+                    </div>
                     <p id="valorServico">Valor: R$ 0,00</p>
 
-                    <label>Tempo (minutos):</label><br>
-  <input type="number" id="tempo" required /><br>
+                    <label for="tempo">Tempo (minutos):</label>
+                    <input type="number" id="tempo" required />
 
-                <label for="horario">Selecione um horário:</label>
-                <select id="horario" ></select><br><br>
-                <input id="contato" type="text"placeholder="Contato Cel:(ddd)9 9999-9999"><br>
-                <button id="salv"type="submit">Salvar</button>
-                <button id="ed" type="button" onclick="editarAgendamento()">Editar</button>
-                <button id="ed" type="button" onclick="removerAgendamento()">Remover</button>
-            </form>
-            <p>ID do Agendamento: Salve para poder editar ou remover seu agendamento! <span id="agendamentoId"></span></p>
-        </div>
-        <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
-        <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
-    </section>
+                    <label for="horario">Selecione um horário:</label>
+                    <select id="horario" required></select>
+                    
+                    <div class="form">
+                        <label for="contato">Contato Cel: (ddd)9 9999-9999</label>
+                        <input id="contato" type="text" placeholder="Digite seu contato" required>
+                    </div>
+                    <button id="salv" type="submit">Salvar</button>
+                    <button id="ed" type="button" onclick="editarAgendamento()">Editar</button>
+                    <button id="ed" type="button" onclick="removerAgendamento()">Remover</button>
+                </form>
+                <p>ID do Agendamento: Salve para poder editar ou remover seu agendamento! <span id="agendamentoId"></span></p>
+            </div>
+            <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário!</p>
+            <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
+        </section>
 
-    <!-- Seção Sobre Nós -->
-    <section id="sobre">
-       <div id="imagens">
-       <div> <img id="img1" src="assets/Rectangle 10.png" alt="">
-        <img id="img2" src="assets/Rectangle 8.png" alt=""></div>
-        <img id="img3" src="assets/Rectangle 9.png" alt="">
-       </div>
-        <div> <h2>Sobre Nós</h2>
-        <p>Conheça nossa história e nossos profissionais.</p></div>
-    </section>
+        <!-- Seção Sobre Nós -->
+        <section id="sobre">
+            <div id="imagens">
+                <div>
+                    <img id="img1" src="assets/Rectangle 10.png" alt="Imagem da Barbearia">
+                    <img id="img2" src="assets/Rectangle 8.png" alt="Profissional da Barbearia">
+                </div>
+                <img id="img3" src="assets/Rectangle 9.png" alt="Serviço da Barbearia">
+            </div>
+            <div>
+                <h2>Sobre Nós</h2>
+                <p>Conheça nossa história e nossos profissionais.</p>
+            </div>
+        </section>
 
-    <!-- Seção de Serviços -->
-    <section id="servicos">
-        <h2>Serviços</h2>
-        <p id="desc">Lorem ipsum dolor sit amet consectetur. Etiam mus vitae lectus proin pellentesque mattis iaculis. In viverra accumsan sagittis tempus duis a. Sagittis mollis a eu urna eget id. </p>
-        <ul id="list">
-            <li><img src="assets/Group 2.png" alt=""></li>
-            <li><img src="assets/Group 3.png" alt=""></li>
-            <li><img src="assets/Group 2.png" alt=""></li>
-            <li><img src="assets/Group 3.png" alt=""></li>
-        </ul>
-    </section>
-    
+        <!-- Seção de Serviços -->
+        <section id="servicos">
+            <h2>Serviços</h2>
+            <p id="desc">Lorem ipsum dolor sit amet consectetur. Etiam mus vitae lectus proin pellentesque mattis iaculis. In viverra accumsan sagittis tempus duis a. Sagittis mollis a eu urna eget id.</p>
+            <ul id="list">
+                <li><img src="assets/Group 2.png" alt="Serviço 1"></li>
+                <li><img src="assets/Group 3.png" alt="Serviço 2"></li>
+                <li><img src="assets/Group 2.png" alt="Serviço 3"></li>
+                <li><img src="assets/Group 3.png" alt="Serviço 4"></li>
+            </ul>
+        </section>
 
-    <!-- Seção de Contato -->
-    <section id="contato">
-        <h2>Contato</h2>
-        <p>Endereço: Rua Exemplo, 123 - Centro</p>
-        <p>Telefone: (11) 1234-5678</p>
-        <p>Email: contato@barbeariax.com</p>
-    </section>
+        <!-- Seção de Contato -->
+        <section id="contato">
+            <h2>Contato</h2>
+            <p>Endereço: Rua Exemplo, 123 - Centro</p>
+            <p>Telefone: (11) 1234-5678</p>
+            <p>Email: contato@barbeariax.com</p>
+        </section>
+    </main>
 
     <!-- Rodapé -->
     <footer>
         <p>&copy; 2023 Barbearia X - Todos os direitos reservados</p>
     </footer>
 
-</body>
-<script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
-    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js";></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-messaging.js"></script>
     <script src="../firebase.js"></script>
-<script src="/home/home.js"></script>
-<script src="/authguard.js"></script>
-<script src="script.js"></script>
+    <script src="/home/home.js"></script>
+    <script src="/authguard.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
