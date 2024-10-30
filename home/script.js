@@ -131,28 +131,20 @@ document.addEventListener("DOMContentLoaded", popularSelectHorarios);
 
 
     const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+    const db = getFirestore(app);
 
-    // Função para enviar dados ao Firestore
-    document.getElementById('dataForm').addEventListener('submit', async (e) => {
-        e.preventDefault(); // Impede o envio do formulário
-
-        const nome = document.getElementById('nome').value;
-        const servico = document.getElementById('servico').value;
-
-        try {
-            // Salva os dados na coleção "servicos"
-            await db.collection('servicos').add({
-                nome: nome,
-                servico: servico,
-                dataCriacao: firebase.firestore.FieldValue.serverTimestamp() // Adiciona timestamp
-            });
-            document.getElementById('resultado').innerText = 'Dados salvos com sucesso!';
-        } catch (error) {
-            console.error("Erro ao salvar dados: ", error);
-            document.getElementById('resultado').innerText = 'Erro ao salvar dados.';
-        }
-
-        // Limpa o formulário
-        document.getElementById('dataForm').reset();
-    });
+    async function salvarAgendamento(data, horario, nome){
+      try{constHorarioDisponivel(data,horario);
+        if(!horarioDisponivel){
+          alert('Horário não disponível');}
+          const agendamento={
+          data,
+          horario, 
+          nome,
+        };
+        const doRef= await addDoc(collectino(db, 'agendamentos'),agendamento);
+        console.log('Agendamento salvo com sucesso!');
+      }catch (error){
+        console.error('Erro ao salvar', error);
+      }
+      }
