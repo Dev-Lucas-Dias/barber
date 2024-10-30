@@ -269,6 +269,9 @@ footer {
     #container2 input {
         width: 90%; /* Full width for inputs */
     }
+    #container2 #serviços{
+        width: 90%;
+    }
 }
 
 @media (max-width: 768px) {
