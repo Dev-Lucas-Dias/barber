@@ -261,7 +261,7 @@ footer {
 
     #container2 {
 
-        width: 50%; /* Make container responsive */
+        width: 80%; /* Make container responsive */
         left: 50%; /* Center it */
         top: 15rem; /* Adjust top position */
     }
