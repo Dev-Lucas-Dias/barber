@@ -25,13 +25,19 @@
     position: relative;
   }
   
-  input[type="text"] {
+  input[type="text"]{
     padding: 0.8rem;
     font-size: 1.6rem;
     width: 20.0rem;
     cursor: pointer;
   }
- 
+ #contato{
+  padding: 0.8rem;
+  font-size: 1.6rem;
+  width: 20.0rem;
+  cursor:text;
+  background: var(--text-color);
+}
   .calendario {
     font-family: Arial, sans-serif;
     font-size: 1.6rem;

@@ -88,7 +88,7 @@ position:absolute;
 top: 15.0rem;
 left: 35.0rem;
 width: 62.0rem;
-        height: 62.0rem;
+        height: auto;
       
         background-color: var(--surface-color);
         border-radius: 16px;
