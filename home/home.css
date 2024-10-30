@@ -260,9 +260,10 @@ footer {
     }
 
     #container2 {
-        width: 90%; /* Make container responsive */
-        left: 5%; /* Center it */
-        top: 10rem; /* Adjust top position */
+
+        width: 50%; /* Make container responsive */
+        left: 50%; /* Center it */
+        top: 15rem; /* Adjust top position */
     }
 
     #container2 input {
@@ -308,9 +309,9 @@ footer {
         font-size: 1.2rem; /* Smaller font size for description */
     }
     #container2 {
-        width: 90%; /* Make container responsive */
-        left: 5%; /* Center it */
-        top: 10rem; /* Adjust top position */
+        width: 50%; /* Make container responsive */
+        left: 50%; /* Center it */
+        top: 15rem; /* Adjust top position */
     }
 
     #container2 input {
