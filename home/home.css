@@ -129,28 +129,22 @@ width: 62.0rem;
     align-items: center;
     padding: 0.8rem 0 2.9rem 0 ;
  }
- #botões{
-    width: 45.0rem;
-    height: auto;
-    display: flex;
-    margin: auto;
-    gap: 5px;
-    button{
+ #salv{
+        height: auto;
+        margin: auto;
         border: none;
-        background-color: var(--bg-button);
-  opacity: 55%;
-  color: var(--text-color);
+        margin-top: 1.0rem;
+        background-color: var(--surface-color-hover);
+        color: var(--text-color-botton);
         width: 11.2rem;
         height: 3.7rem;
         border-radius: 8px;
-    }
-    button:hover{
-        cursor: pointer;
-        background-color: var(--surface-color-hover);
-        color: var(--text-color-botton);
-    }
- 
  }
+ #salv:hover{
+    cursor: pointer;
+    background-color: var(--surface-color-hover);
+    color: var(--text-color-botton);
+}
  #container2 #confirmar{
     margin-top: 4.4rem;
     margin-bottom: 7.0rem;

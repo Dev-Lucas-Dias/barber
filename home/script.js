@@ -131,7 +131,7 @@ document.addEventListener("DOMContentLoaded", popularSelectHorarios);
 
 
     const app = firebase.initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+    const db = firebase.firestore();
 
     async function salvarAgendamento(data, horario, nome){
       try{constHorarioDisponivel(data,horario);
