@@ -100,7 +100,7 @@ function gerarHorarios(inicio, fim, intervalo) {
 // Popula o select com os horários
 function popularSelectHorarios() {
   const selectHorario = document.getElementById("horario");
-  const horarios = gerarHorarios(9, 19, 30); // Exemplo: 8h às 18h com intervalos de 30 min
+  const horarios = gerarHorarios(9, 19, 60); // Exemplo: 8h às 18h com intervalos de 30 min
 
   horarios.forEach(horario => {
     const option = document.createElement("option");
@@ -130,21 +130,112 @@ document.addEventListener("DOMContentLoaded", popularSelectHorarios);
     }
 
 
-    const app = firebase.initializeApp(firebaseConfig);
-    const db = firebase.firestore();
+      document.getElementById('agendamentoForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+      
+        const nome = document.getElementById('nome').value;
+        const data = document.getElementById('data').value;
+        const servico = document.getElementById('servicos').value;
+        const horario = document.getElementById('horario').value;
+        const tempo = parseInt(document.getElementById('tempo').value);
+        const agendamentoRef = db.collection('Agendamentos');
+      
+        // Verificar se o horário está disponível
+        const querySnapshot = await agendamentoRef
+          .where('data', '==', data)
+          .where('horario', '==', horario)
+          .get();
+        let horarioDisponivel = true;
+  querySnapshot.forEach((doc) => {
+    const { horario: horarioExistente, tempo: tempoExistente } = doc.data();
+    const inicioExistente = new Date(`1970-01-01T${horarioExistente}:00`);
+    const fimExistente = new Date(inicioExistente.getTime() + tempoExistente * 60000);
+    const inicioNovo = new Date(`1970-01-01T${horario}:00`);
+    const fimNovo = new Date(inicioNovo.getTime() + tempo * 60000);
 
-    async function salvarAgendamento(data, horario, nome){
-      try{constHorarioDisponivel(data,horario);
-        if(!horarioDisponivel){
-          alert('Horário não disponível');}
-          const agendamento={
-          data,
-          horario, 
-          nome,
-        };
-        const doRef= await addDoc(collectino(db, 'agendamentos'),agendamento);
-        console.log('Agendamento salvo com sucesso!');
-      }catch (error){
-        console.error('Erro ao salvar', error);
+    if (
+      (inicioNovo >= inicioExistente && inicioNovo < fimExistente) ||
+      (fimNovo > inicioExistente && fimNovo <= fimExistente)
+    ) {
+      horarioDisponivel = false;
+    }
+  });
+
+  if (!horarioDisponivel) {
+    alert("Este horário está ocupado. Escolha outro horário.");
+    return;
+  }
+      
+        // Salvar o agendamento no Firestore
+        try {
+          const docRef = await agendamentoRef.add({
+            nome: nome,
+            data: data,
+            servico: servico,
+            horario: horario
+          });
+      
+          document.getElementById('agendamentoId').innerText = docRef.id;
+          enviarNotificacaoEstabelecimento(nome, data, servico, horario);
+          alert("Agendamento realizado com sucesso!");
+          document.getElementById('agendamentoForm').reset();
+        } catch (error) {
+          console.error("Erro ao agendar: ", error);
+          alert("Erro ao realizar o agendamento. Tente novamente.");
+        }
+      });
+      
+      async function editarAgendamento() {
+        const id = prompt("Informe o ID do agendamento para editar:");
+        if (!id) return;
+      
+        const nome = document.getElementById('nome').value;
+        const data = document.getElementById('data').value;
+        const servico = document.getElementById('servico').value;
+        const horario = document.getElementById('horario').value;
+      
+        try {
+          await db.collection('agendamentos').doc(id).update({
+            nome: nome,
+            data: data,
+            servico: servico,
+            horario: horario
+          });
+          alert("Agendamento atualizado com sucesso!");
+          enviarNotificacaoEstabelecimento(nome, data, servico, horario);
+        } catch (error) {
+          console.error("Erro ao editar agendamento: ", error);
+          alert("Erro ao editar o agendamento.");
+        }
       }
+      
+      // Função para remover o agendamento
+      async function removerAgendamento() {
+        const id = prompt("Informe o ID do agendamento para remover:");
+        if (!id) return;
+      
+        try {
+          await db.collection('agendamentos').doc(id).delete();
+          alert("Agendamento removido com sucesso!");
+        } catch (error) {
+          console.error("Erro ao remover agendamento: ", error);
+          alert("Erro ao remover o agendamento.");
+        }
+      }
+      
+      // Função para enviar notificação ao estabelecimento
+      async function enviarNotificacaoEstabelecimento(nome, data, servico, horario) {
+        try {
+          // Envia uma notificação usando Firebase Cloud Messaging
+          await messaging.send({
+            notification: {
+              title: "Novo Agendamento",
+              body: `Nome: ${nome}, Serviço: ${servico}, Data: ${data}, Horário: ${horario}`
+            },
+            topic: "agendamentos"
+          });
+          console.log("Notificação enviada ao estabelecimento.");
+        } catch (error) {
+          console.error("Erro ao enviar notificação: ", error);
+        }
       }

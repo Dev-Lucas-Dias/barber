@@ -30,7 +30,7 @@
         <div id="container2"> 
        <h3>Agendar horário</h3>
             <button id="btx" onclick="fechar()"><img src="assets/🦆 icon _close_.png" alt=""></button>
-            <form id="dataForm">
+            <form id="agendamentoForm">
             <div class="form">
                 <label>Nome completo </label>
                 <input type="text" name="nome" id="nome" placeholder="Digite seu nome" >
@@ -54,22 +54,27 @@
                     <label for="servicos">Selecione um serviço:</label>
                     <select id="servicos" onchange="mostrarValorServico()">
                       <option value="" selected disabled>Escolha um serviço</option>
-                      <option value="25">Corte Básico - R$ 25,00</option>
-                      <option value="50">Corte Completo - R$ 50,00</option>
-                      <option value="40">Corte Navalhado - R$ 40,00</option>
-                      <option value="20">Freestyle - R$ 20,00</option>
-                      <option value="15">Barba - R$ 15,00</option>
-                      <option value="15">Sobrancelha - R$ 10,00</option>
-                      <option value="10">Pezinho - R$ 10,00</option>
+                      <option value="Corte Básico">Corte Básico - R$ 25,00</option>
+                      <option value="Corte Completo">Corte Completo - R$ 50,00</option>
+                      <option value="Corte Navalhado">Corte Navalhado - R$ 40,00</option>
+                      <option value="Freestyle">Freestyle - R$ 20,00</option>
+                      <option value="Barba">Barba - R$ 15,00</option>
+                      <option value="Sobrancelha">Sobrancelha - R$ 10,00</option>
+                      <option value="Pezinho">Pezinho - R$ 10,00</option>
                     </select></Span>
                   
                     <p id="valorServico">Valor: R$ 0,00</p>
 
-                <label for="horario">Selecione um horário:</label>
-                <select id="horario"></select><br>
-                <button id="salv" onclick="salvarAgendamento()" type="submit">Salvar</button>
-            </form>
+                    <label>Tempo (minutos):</label><br>
+  <input type="number" id="tempo" required /><br>
 
+                <label for="horario">Selecione um horário:</label>
+                <select id="horario" ></select><br>
+                <button id="salv"type="submit">Salvar</button>
+                <button id="ed" type="button" onclick="editarAgendamento()">Editar</button>
+                <button id="ed" type="button" onclick="removerAgendamento()">Remover</button>
+            </form>
+            <p>ID do Agendamento: Salve para poder editar ou remover seu agendamento! <span id="agendamentoId"></span></p>
         </div>
         <p>A melhor experiência em cuidados masculinos.<br> Estilo é um reflexo da sua atitude e sua personalidade!<br><br> Agende seu horário! </p>
         <button id="hr" onclick="marcarHorario()">Marcar Horário</button>
@@ -116,6 +121,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-firestore-compat.js";></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-messaging.js"></script>
     <script src="../firebase.js"></script>
 <script src="/home/home.js"></script>
 <script src="/authguard.js"></script>
