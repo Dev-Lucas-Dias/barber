@@ -5,45 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="global.css">
     <link rel="stylesheet" href="index.css">
-    <title>Loginbarber</title>
+    <title>Login - Barbearia</title>
 </head>
 <body>
-  <div id="loading">
-    <label>
-      Carregando....
-    </label>
-  </div>
-<div id=container>
-<h2>Email</h2>
-<input type="email" name="email"  onchange="validateEm()" id="email" placeholder="Coloque seu email">
-<div class="error" id="email-error"> Email é obrigatório!</div>
-<div class="error"id="email-invalid" > Email invalido</div>
-<h2>Senha</h2>
-<input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validateSenha()">
-<div class="error" id="senha-invalid"> Senha é obrigatória!</div>
-<button id="recuperar-senha" disabled="true" onclick="recover()">Recuperar senha</button>
-<button id="enter" type="button"  disabled="true" onclick="login()">Entrar</button>
-<button id="register" type="button" onclick="register()">Registrar</button>
-</div>
+    <div id="loading" aria-live="polite">
+        <label>Carregando....</label>
+    </div>
 
+    <main id="container">
+        <h2>Login</h2>
 
+        <section>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" placeholder="Coloque seu email" onchange="validateEm()">
+            <div class="error" id="email-error">Email é obrigatório!</div>
+            <div class="error" id="email-invalid">Email inválido</div>
+        </section>
 
+        <section>
+            <label for="senha">Senha</label>
+            <input type="password" name="senha" id="senha" placeholder="Coloque sua senha" onchange="validateSenha()">
+            <div class="error" id="senha-invalid">Senha é obrigatória!</div>
+        </section>
 
+        <button id="recuperar-senha" disabled onclick="recover()">Recuperar senha</button>
+        <button id="enter" type="button" disabled onclick="login()">Entrar</button>
+        <button id="register" type="button" onclick="register()">Registrar</button>
+    </main>
 
-
-
-
-
-
-
-
-
-
-  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js";></script>
-  <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js";></script>
-  <script src="firebase.js"></script>
-  <script src="/login.js"></script>
-  <script src="/loading.js"></script>
-  <script src="/validate.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.14.0/firebase-auth-compat.js"></script>
+    <script src="firebase.js"></script>
+    <script src="/login.js"></script>
+    <script src="/loading.js"></script>
+    <script src="/validate.js"></script>
 </body>
 </html>
