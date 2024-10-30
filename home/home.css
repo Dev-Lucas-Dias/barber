@@ -307,4 +307,13 @@ footer {
     #desc {
         font-size: 1.2rem; /* Smaller font size for description */
     }
+    #container2 {
+        width: 90%; /* Make container responsive */
+        left: 5%; /* Center it */
+        top: 10rem; /* Adjust top position */
+    }
+
+    #container2 input {
+        width: 90%; /* Full width for inputs */
+    }
 }
