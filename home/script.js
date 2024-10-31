@@ -150,7 +150,7 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
 function enviarParaWhatsApp(nome, servico, data, horario) {
   const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
   const mensagem = `Olá Barbearia X!, gostaria de realizar um agendamento:\n
-  \nEu sou o ${nome} marquei um horário para fazer ${servico} \nData ${data} às ${horario} horas.`;
+  \nEu sou o ${nome} marquei um horário para fazer ${servico} \nData ${data} às ${horario} horas.\n`;
   const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
 }
@@ -165,6 +165,7 @@ async function editarAgendamento() {
   if (!querySnapshot.empty) {
     const doc = querySnapshot.docs[0]; // Pega o primeiro agendamento encontrado
     const novoNome = prompt("Digite o novo nome:", doc.data().nome);
+    const novoServico = prompt("Digite o novo serviço:", doc.data().servico);
     const novoContato = prompt("Digite o novo contato:", doc.data().contato);
     const novaData = prompt("Digite a nova data (dd/mm/yyyy):", doc.data().data);
     const novoHorario = prompt("Digite o novo horário (hh:mm):", doc.data().horario);
@@ -175,17 +176,19 @@ async function editarAgendamento() {
       contato: novoContato,
       data: novaData,
       horario: novoHorario,
+      serviço:novoServico,
       tempo: parseInt(novoTempo)
     });
     alert("Agendamento atualizado com sucesso!");
     
-    enviarParaWhatsApp(novoNome, novaData, novoHorario, "editou");
+    enviarParaWhatsApp(novoNome, novoServico, novaData, novoHorario,);
+   
   } else {
     alert("Agendamento não encontrado para esse nome.");
   }
 }
 
-// Função para remover agendamento
+/// Função para remover agendamento
 async function removerAgendamento() {
   const nome = prompt("Digite o nome do cliente cujo agendamento você deseja remover:");
 
@@ -198,10 +201,19 @@ async function removerAgendamento() {
       await doc.ref.delete();
       alert("Agendamento removido com sucesso!");
       document.getElementById('agendamentoId').innerText = "";
-      
-      enviarParaWhatsApp(" O cliente cancelou o Horário");
+
+      // Mensagem de cancelamento personalizada
+      const mensagemCancelamento = `Olá Barbearia X!, estou cancelando o agendamento que fiz para ${nome}. Desculpe pelo transtorno!`;
+      enviarParaWhatsApp("Agendamento Cancelado", mensagemCancelamento);
     }
   } else {
     alert("Agendamento não encontrado para esse nome.");
   }
+}
+
+// Atualizando a função enviarParaWhatsApp para aceitar duas mensagens
+function enviarParaWhatsApp(tipo, mensagem) {
+  const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
+  const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
+  window.open(url, "_blank");
 }
