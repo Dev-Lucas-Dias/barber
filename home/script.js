@@ -133,7 +133,6 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
       tempo,
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
-    
     idAgendamento = docRef.id; // Captura o ID do agendamento
     document.getElementById('agendamentoId').innerText = idAgendamento;
     alert("Agendamento realizado com sucesso!");
@@ -150,7 +149,8 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
 // Enviar mensagem para WhatsApp
 function enviarParaWhatsApp(nome, servico, data, horario) {
   const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
-  const mensagem = `Olá! O cliente ${nome} agendou ${servico} para ${data} às ${horario} horas.`;
+  const mensagem = `Olá Barbearia X!, gostaria de realizar um agendamento:\n
+  \nEu sou o ${nome} marquei um horário para fazer ${servico} \nData ${data} às ${horario} horas.`;
   const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
 }
