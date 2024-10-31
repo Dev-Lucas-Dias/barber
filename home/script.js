@@ -1,14 +1,18 @@
-// script.js
+// Inicialização do Firebase
+// firebase.initializeApp(firebaseConfig);
+// const db = firebase.firestore();
 
 const dataInput = document.getElementById("data");
 const calendario = document.getElementById("calendario");
 const diasElemento = document.getElementById("dias");
 const mesAnoElemento = document.getElementById("mesAno");
+const selectHorario = document.getElementById("horario");
+const tempoServicoInput = document.getElementById("tempo");
 
 let mesAtual = new Date().getMonth();
 let anoAtual = new Date().getFullYear();
+let idAgendamento = "";  // Variável para armazenar o ID do agendamento
 
-// Abre o calendário
 dataInput.addEventListener('focus', abrirCalendario);
 document.addEventListener("click", (event) => {
   if (!calendario.contains(event.target) && event.target !== dataInput) {
@@ -16,12 +20,12 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Carrega o calendário
 function abrirCalendario() {
   calendario.style.display = "block";
   carregarCalendario(mesAtual, anoAtual);
 }
 
+// Carregar dias do mês no calendário
 function carregarCalendario(mes, ano) {
   const diasDoMes = new Date(ano, mes + 1, 0).getDate();
   const primeiroDia = new Date(ano, mes, 1).getDay();
@@ -47,20 +51,36 @@ function alterarMes(valor) {
 }
 
 // Seleciona a data
-const dataHoje = new Date();
-dataHoje.setHours(0, 0, 0, 0);
-
 function selecionarData(dia, mes, ano) {
   const dataSelecionada = new Date(ano, mes, dia);
+  const dataHoje = new Date();
+  dataHoje.setHours(0, 0, 0, 0);
+
   if (dataSelecionada >= dataHoje) {
     dataInput.value = `${String(dia).padStart(2, "0")}/${String(mes + 1).padStart(2, "0")}/${ano}`;
     calendario.style.display = "none";
+    carregarHorariosDisponiveis(dataInput.value);
   } else {
     alert("Essa data não está disponível!");
   }
 }
 
-// Gera horários
+// Carregar horários disponíveis
+async function carregarHorariosDisponiveis(dataSelecionada) {
+  selectHorario.innerHTML = "";
+  const horariosDisponiveis = gerarHorarios(9, 19, 30);
+
+  for (const horario of horariosDisponiveis) {
+    const disponivel = await verificarDisponibilidadeHorario(dataSelecionada, horario);
+    if (disponivel) {
+      const option = document.createElement("option");
+      option.value = horario;
+      option.text = horario;
+      selectHorario.appendChild(option);
+    }
+  }
+}
+
 function gerarHorarios(inicio, fim, intervalo) {
   const horarios = [];
   for (let h = inicio; h <= fim; h++) {
@@ -71,24 +91,26 @@ function gerarHorarios(inicio, fim, intervalo) {
   return horarios;
 }
 
-// Popula o select com os horários
-document.addEventListener("DOMContentLoaded", () => {
-  const selectHorario = document.getElementById("horario");
-  gerarHorarios(9, 19, 30).forEach(horario => {
-    const option = document.createElement("option");
-    option.value = horario;
-    option.text = horario;
-    selectHorario.appendChild(option);
-  });
-});
+async function verificarDisponibilidadeHorario(data, horario) {
+  const tempoServico = parseInt(tempoServicoInput.value);
+  const agendamentoRef = db.collection('Agendamentos');
+  const querySnapshot = await agendamentoRef.where('data', '==', data).get();
 
-// Mostra valor do serviço
-function mostrarValorServico() {
-  const valor = parseFloat(document.getElementById("servicos").value) || 0;
-  document.getElementById("valorServico").innerText = `Valor: R$ ${valor.toFixed(2)}`;
+  for (const doc of querySnapshot.docs) {
+    const { horario: horarioExistente, tempo: tempoExistente } = doc.data();
+    const inicioExistente = new Date(`1970-01-01T${horarioExistente}:00`);
+    const fimExistente = new Date(inicioExistente.getTime() + tempoExistente * 60000);
+    const inicioNovo = new Date(`1970-01-01T${horario}:00`);
+    const fimNovo = new Date(inicioNovo.getTime() + tempoServico * 60000);
+
+    if ((inicioNovo >= inicioExistente && inicioNovo < fimExistente) || (fimNovo > inicioExistente && fimNovo <= fimExistente)) {
+      return false;  
+    }
+  }
+  return true;
 }
 
-// Agendamento
+// Enviar informações ao Firestore
 document.getElementById('agendamentoForm').addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -98,77 +120,88 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
   const horario = document.getElementById('horario').value;
   const contato = document.getElementById('contato').value;
   const tempo = parseInt(document.getElementById('tempo').value);
+
   const agendamentoRef = db.collection('Agendamentos');
 
-  // Verifica se o horário está disponível
-  let horarioDisponivel = true;
-  const querySnapshot = await agendamentoRef.where('data', '==', data).where('horario', '==', horario).get();
-  
-  querySnapshot.forEach((doc) => {
-    const { horario: horarioExistente, tempo: tempoExistente } = doc.data();
-    const inicioExistente = new Date(`1970-01-01T${horarioExistente}:00`);
-    const fimExistente = new Date(inicioExistente.getTime() + tempoExistente * 60000);
-    const inicioNovo = new Date(`1970-01-01T${horario}:00`);
-    const fimNovo = new Date(inicioNovo.getTime() + tempo * 60000);
-    if ((inicioNovo >= inicioExistente && inicioNovo < fimExistente) || (fimNovo > inicioExistente && fimNovo <= fimExistente)) {
-      horarioDisponivel = false;
-    }
-  });
-
-  if (!horarioDisponivel) {
-    alert("Este horário está ocupado. Escolha outro horário.");
-    return;
-  }
-
-  // Salvar agendamento no Firestore
   try {
-    const docRef = await agendamentoRef.add({ nome, data, servico, horario, contato });
-    document.getElementById('agendamentoId').innerText = docRef.id;
+    const docRef = await agendamentoRef.add({
+      nome,
+      data,
+      servico,
+      horario,
+      contato,
+      tempo,
+      timestamp: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    
+    idAgendamento = docRef.id; // Captura o ID do agendamento
+    document.getElementById('agendamentoId').innerText = idAgendamento;
     alert("Agendamento realizado com sucesso!");
-    enviarWhatsApp(nome, data, servico, horario); // Envio para WhatsApp
+    
+    enviarParaWhatsApp(nome, servico, data, horario);
     document.getElementById('agendamentoForm').reset();
+    
   } catch (error) {
     console.error("Erro ao agendar: ", error);
     alert("Erro ao realizar o agendamento. Tente novamente.");
   }
 });
 
-// Envio para WhatsApp
-function enviarWhatsApp(nome, data, servico, horario) {
-  const numeroWhatsApp = "5535997309813"; // Substitua pelo número desejado
-  const mensagem = `Novo Agendamento:\nNome: ${nome}\nData: ${data}\nServiço: ${servico}\nHorário: ${horario}`;
-  const url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${encodeURIComponent(mensagem)}`;
-  window.open(url, '_blank');
+// Enviar mensagem para WhatsApp
+function enviarParaWhatsApp(nome, servico, data, horario) {
+  const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
+  const mensagem = `Olá! O cliente ${nome} agendou ${servico} para ${data} às ${horario} horas.`;
+  const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
+  window.open(url, "_blank");
 }
 
-// Funções para editar e remover agendamento
+/// Função para editar agendamento
 async function editarAgendamento() {
-  const id = prompt("Informe o ID do agendamento para editar:");
-  if (!id) return;
+  const nome = prompt("Digite o nome do cliente cujo agendamento você deseja editar:");
 
-  const nome = document.getElementById('nome').value;
-  const data = dataInput.value;
-  const servico = document.getElementById('servicos').value;
-  const horario = document.getElementById('horario').value;
+  const agendamentoRef = db.collection('Agendamentos');
+  const querySnapshot = await agendamentoRef.where('nome', '==', nome).get();
 
-  try {
-    await db.collection('agendamentos').doc(id).update({ nome, data, servico, horario });
+  if (!querySnapshot.empty) {
+    const doc = querySnapshot.docs[0]; // Pega o primeiro agendamento encontrado
+    const novoNome = prompt("Digite o novo nome:", doc.data().nome);
+    const novoContato = prompt("Digite o novo contato:", doc.data().contato);
+    const novaData = prompt("Digite a nova data (dd/mm/yyyy):", doc.data().data);
+    const novoHorario = prompt("Digite o novo horário (hh:mm):", doc.data().horario);
+    const novoTempo = prompt("Digite o novo tempo (minutos):", doc.data().tempo);
+    
+    await doc.ref.update({
+      nome: novoNome,
+      contato: novoContato,
+      data: novaData,
+      horario: novoHorario,
+      tempo: parseInt(novoTempo)
+    });
     alert("Agendamento atualizado com sucesso!");
-  } catch (error) {
-    console.error("Erro ao editar agendamento: ", error);
-    alert("Erro ao editar o agendamento.");
+    
+    enviarParaWhatsApp(novoNome, novaData, novoHorario, "editou");
+  } else {
+    alert("Agendamento não encontrado para esse nome.");
   }
 }
 
+// Função para remover agendamento
 async function removerAgendamento() {
-  const id = prompt("Informe o ID do agendamento para remover:");
-  if (!id) return;
+  const nome = prompt("Digite o nome do cliente cujo agendamento você deseja remover:");
 
-  try {
-    await db.collection('agendamentos').doc(id).delete();
-    alert("Agendamento removido com sucesso!");
-  } catch (error) {
-    console.error("Erro ao remover agendamento: ", error);
-    alert("Erro ao remover o agendamento.");
+  const agendamentoRef = db.collection('Agendamentos');
+  const querySnapshot = await agendamentoRef.where('nome', '==', nome).get();
+
+  if (!querySnapshot.empty) {
+    const doc = querySnapshot.docs[0]; // Pega o primeiro agendamento encontrado
+    if (confirm("Tem certeza que deseja remover este agendamento?")) {
+      await doc.ref.delete();
+      alert("Agendamento removido com sucesso!");
+      document.getElementById('agendamentoId').innerText = "";
+      
+      enviarParaWhatsApp(" O cliente cancelou o Horário");
+    }
+  } else {
+    alert("Agendamento não encontrado para esse nome.");
   }
 }

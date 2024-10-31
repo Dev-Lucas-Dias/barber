@@ -168,7 +168,9 @@ section {
     border-style: hidden;
     font-size: 1.5rem;
 }
-
+#sobre p{
+    font-size: 1.8rem;
+}
 #sobre #imagens {
     display: grid;
     gap: 5px;
@@ -199,11 +201,12 @@ section {
     padding-top: 10.4rem;
     padding-bottom: 1.4rem;
     align-items: center;
+    font-size: 3.5rem;
 }
 
 #desc {
     padding-bottom: 48px;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
 }
 
 #list {
@@ -215,12 +218,6 @@ section {
 #list li img {
     width: 20rem;
     height: auto;
-}
-
-#contato {
-    background-color: var(--stroke-color);
-    color: var(--text-color);
-    font-size: 1.5rem;
 }
 
 /* Botão */
@@ -238,13 +235,26 @@ section {
 button:hover {
     background-color: #555;
 }
-
+#cont{
+    margin: 0;
+    padding: 0;
+}
+ #cont #contato{
+    width: 100%;
+    background:var(--surface-color);
+    color: var(--text-color);
+    height:auto;
+}
+#cont #contato p{
+    font-size: 1.8rem;
+}
 /* Rodapé */
 footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 2rem;
+    font-size: 1.8rem;
 }
 
 /* Media Queries for Responsive Design */
@@ -291,6 +301,27 @@ footer {
     #container2 {
         top: 10rem; /* Adjust position for smaller screens */
     }
+    #sobre{
+        display: block;
+    }
+    #sobre p{
+        margin-bottom: 1.5rem;
+    }
+    #sobre #imagens {
+      padding-top: 10.5rem;
+        display: inline;
+        gap: 5px;
+        width: auto ;
+    }
+    #sobre #img1, #img2,#img3  {
+    width:auto;
+    height: auto;
+    border-radius: 5px;}
+    #list li img {
+        width: 60%;
+    height: auto;
+    }
+   
 }
 
 @media (max-width: 480px) {
@@ -320,4 +351,27 @@ footer {
     #container2 input {
         width: 70%; /* Full width for inputs */
     }
+    #sobre{
+        display: block;
+    }
+    #sobre p{
+        margin-bottom: 1.0rem;
+    }
+    #sobre #imagens {
+      padding-top: 10.5rem;
+        display: inline;
+        gap: 5px;
+        width: auto ;
+    }
+    #sobre #img1, #img2,#img3  {
+    width:50%;
+    height: auto;
+    border-radius: 5px;}
+
+    #servicos #list{
+display: block;
+align-items: center;
+text-align: center;
+    }
+
 }
