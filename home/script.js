@@ -12,6 +12,10 @@ const tempoServicoInput = document.getElementById("tempo");
 let mesAtual = new Date().getMonth();
 let anoAtual = new Date().getFullYear();
 let idAgendamento = "";  // Variável para armazenar o ID do agendamento
+const usuarioLogado = {
+  uid: "ID_DO_USUARIO_LOGADO", // ID do usuário logado
+  nome: "Nome do Usuário", // Nome do usuário logado (opcional)
+};
 
 dataInput.addEventListener('focus', abrirCalendario);
 document.addEventListener("click", (event) => {
@@ -131,6 +135,7 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
       horario,
       contato,
       tempo,
+      uid: usuarioLogado.uid, // Armazena o ID do usuário que fez o agendamento
       timestamp: firebase.firestore.FieldValue.serverTimestamp()
     });
     idAgendamento = docRef.id; // Captura o ID do agendamento
@@ -170,6 +175,13 @@ async function editarAgendamento() {
 
   if (!querySnapshot.empty) {
     const doc = querySnapshot.docs[0]; // Pega o primeiro agendamento encontrado
+
+    // Verifique se o agendamento pertence ao usuário logado
+    if (doc.data().uid !== usuarioLogado.uid) {
+      alert("Você não tem permissão para editar este agendamento.");
+      return;
+    }
+
     const novoNome = prompt("Digite o novo nome:", doc.data().nome);
     const novoServico = prompt("Digite o novo serviço:", doc.data().servico);
     const novoContato = prompt("Digite o novo contato:", doc.data().contato);
@@ -177,13 +189,14 @@ async function editarAgendamento() {
     const novoHorario = prompt("Digite o novo horário (hh:mm):", doc.data().horario);
     const novoTempo = prompt("Digite o novo tempo (minutos):", doc.data().tempo);
     
-    await doc.ref.update({
+    await agendamentoRef.doc(doc.id).update({
       nome: novoNome,
       contato: novoContato,
       data: novaData,
       horario: novoHorario,
-      serviço: novoServico,
-      tempo: parseInt(novoTempo)
+      servico: novoServico,
+      tempo: parseInt(novoTempo),
+      uid: usuarioLogado.uid // Atualiza o ID do usuário que fez o agendamento
     });
     alert("Agendamento atualizado com sucesso!");
     
@@ -205,6 +218,13 @@ async function removerAgendamento() {
 
   if (!querySnapshot.empty) {
     const doc = querySnapshot.docs[0]; // Pega o primeiro agendamento encontrado
+
+    // Verifique se o agendamento pertence ao usuário logado
+    if (doc.data().uid !== usuarioLogado.uid) {
+      alert("Você não tem permissão para remover este agendamento.");
+      return;
+    }
+
     if (confirm("Tem certeza que deseja remover este agendamento?")) {
       await doc.ref.delete();
       alert("Agendamento removido com sucesso!");
