@@ -150,6 +150,13 @@ document.getElementById('agendamentoForm').addEventListener('submit', async (e) 
 function enviarParaWhatsApp(nome, servico, data, horario) {
   const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
   const mensagem = `Olá Barbearia X!, gostaria de realizar um agendamento:\n\nEu sou o ${nome}, marquei um horário para fazer ${servico} \nData: ${data} às ${horario} horas.`;
+  
+  // Verifique se as variáveis estão corretas
+  console.log("Nome:", nome);
+  console.log("Serviço:", servico);
+  console.log("Data:", data);
+  console.log("Horário:", horario);
+
   const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
 }
@@ -180,6 +187,8 @@ async function editarAgendamento() {
     });
     alert("Agendamento atualizado com sucesso!");
     
+    // Verifique se o nome atualizado está correto
+    console.log("Nome atualizado:", novoNome);
     enviarParaWhatsApp(novoNome, novoServico, novaData, novoHorario);
    
   } else {
@@ -201,9 +210,8 @@ async function removerAgendamento() {
       alert("Agendamento removido com sucesso!");
       document.getElementById('agendamentoId').innerText = "";
       
-      // Mensagem específica para cancelamento
-      const mensagemCancelamento = `Olá Barbearia X!, estou cancelando o agendamento que fiz. Desculpe pelo transtorno!`;
-      enviarParaWhatsApp("Cancelamento", "", "", mensagemCancelamento);
+      // Enviar mensagem de cancelamento
+      enviarParaWhatsApp(nome, "", "", "", "Cancelamento");
     }
   } else {
     alert("Agendamento não encontrado para esse nome.");
@@ -211,7 +219,7 @@ async function removerAgendamento() {
 }
 
 // Função para enviar mensagens de cancelamento para WhatsApp
-function enviarParaWhatsApp(tipo, nome = '', servico = '', data = '', horario = '') {
+function enviarParaWhatsApp(nome, servico = '', data = '', horario = '', tipo = '') {
   const numeroEstabelecimento = "+5535997309813"; // Insira o número do estabelecimento aqui
   let mensagem;
 
@@ -220,6 +228,9 @@ function enviarParaWhatsApp(tipo, nome = '', servico = '', data = '', horario = 
   } else {
     mensagem = `Olá Barbearia X!, gostaria de realizar um agendamento:\n\nEu sou o ${nome}, marquei um horário para fazer ${servico} \nData: ${data} às ${horario} horas.`;
   }
+
+  // Verifique se a mensagem está correta antes de enviar
+  console.log("Mensagem a ser enviada:", mensagem);
 
   const url = `https://api.whatsapp.com/send?phone=${numeroEstabelecimento}&text=${encodeURIComponent(mensagem)}`;
   window.open(url, "_blank");
